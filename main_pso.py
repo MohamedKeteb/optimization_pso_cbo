@@ -3,7 +3,7 @@ import numpy.random as rnd
 
 
 
-def update_velocity(particles, velocity, pbest, gbest):
+def update_velocity(particles, velocity, pbest, gbest, vmax):
     
     r1 = np.random.uniform(0, 1)
     r2 = np.random.uniform(0, 1)
@@ -22,7 +22,7 @@ def update_velocity(particles, velocity, pbest, gbest):
 #------------------------------------------------------------
 
 
-def update_position(particles, velocity):
+def update_position(particles, velocity, x_inf, x_sup):
     
     new_particles = particles + velocity
     idx = np.where(new_particles > x_sup)
@@ -51,7 +51,7 @@ def update_best(pbest, gbest, particles):
 
 
 
-def run_pso(T):
+def run_pso(T, x_inf, x_sup):
 
     particles = np.random.uniform(x_inf, x_sup, N)
     velocity = np.zeros_like(particles)
